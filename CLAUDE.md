@@ -52,3 +52,29 @@ See `docs/COLLABORATIVE-DESIGN-PRINCIPLE.md` for full protocol and examples.
 ## Context Management
 
 @.claude/docs/context-management.md
+
+## GameStudio-Lite Usage Layer
+
+GameStudio-Lite adds a lightweight default workflow for solo and indie game development. It does not replace the original 49 agents, studio hierarchy, skills, hooks, rules, or workflow catalog.
+
+Before starting a task:
+
+1. Read `project_state.yaml` if it exists.
+2. If it does not exist, use `project_state.yaml.example` as the default reference.
+3. Determine the active Project Mode: `jam` or `indie`.
+4. Choose the smallest useful Agent Pack, Skill Set, and Template Mode for the task.
+
+Lite defaults:
+
+- Jam Mode favors playable-first delivery, `brief` templates, lean review, and no more than 5 default agents.
+- Indie Mode favors sustainable iteration, `brief` templates by default, standard review, and no more than 8 default agents.
+- Full templates are reserved for high-risk core systems, cross-system changes, architecture decisions, or release-critical work.
+- Original agents remain available as a role library, but Lite workflows should not activate all agents by default.
+- Prefer `/lean-check` when scope, agent usage, template depth, or technical design appears heavier than the current mode needs.
+
+Lite references:
+
+- Project Modes: `@.claude/docs/project-modes.md`
+- Agent Packs: `@.claude/docs/agent-packs.md`
+- Skill Catalog Lite: `@.claude/docs/skill-catalog-lite.md`
+- Template Modes: `@.claude/docs/template-modes.md`

@@ -1,0 +1,22 @@
+project:
+  mode: jam
+  engine: unknown
+  target_playtime_minutes: 30
+workflow:
+  stage: concept
+  template_mode: brief
+  review_intensity: lean
+enabled:
+  agent_packs:
+    - core
+  skill_set: jam_core
+current:
+  epic: null
+  story: null
+  milestone: playable_demo
+constraints:
+  scope_rule: playable_first
+  max_default_agents: 5
+framework:
+  name: GameStudio-Lite
+  version: v0.1.0
