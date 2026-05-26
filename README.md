@@ -33,6 +33,7 @@ The result: you still make every decision, but now you have a team that asks the
 ## Table of Contents
 
 - [What's Included](#whats-included)
+- [GameStudio-Lite](#gamestudio-lite)
 - [Studio Hierarchy](#studio-hierarchy)
 - [Slash Commands](#slash-commands)
 - [Getting Started](#getting-started)
@@ -57,6 +58,43 @@ The result: you still make every decision, but now you have a team that asks the
 | **Hooks** | 12 | Automated validation on commits, pushes, asset changes, session lifecycle, agent audit trail, and gap detection |
 | **Rules** | 11 | Path-scoped coding standards enforced when editing gameplay, engine, AI, UI, network code, and more |
 | **Templates** | 41 | Document templates for GDDs, UX specs, ADRs, sprint plans, HUD design, accessibility, and more |
+
+## GameStudio-Lite
+
+GameStudio-Lite is a lightweight usage layer for independent developers using this template inside a real game project. It keeps the original Claude Code Game Studios architecture intact, but gives solo and small-team projects a smaller default path with fewer agents, shorter templates, and stronger scope control.
+
+Lite is built around two Project Modes:
+
+| Mode | Best For | Default Style |
+|------|----------|---------------|
+| **Jam Mode** | Game jams, fast demos, vertical slices, short playable prototypes | Playable-first, `brief` templates, lean review, max 5 default agents |
+| **Indie Mode** | Longer solo projects, Steam demos, small-team games, multi-milestone development | Sustainable iteration, `brief` by default, `full` only for high-risk systems, max 8 default agents |
+
+Lite adds:
+
+- Project Mode docs: `.claude/docs/project-modes.md`
+- Agent Pack docs: `.claude/docs/agent-packs.md`
+- Skill Catalog Lite: `.claude/docs/skill-catalog-lite.md`
+- Template Mode docs: `.claude/docs/template-modes.md`
+- Project state template: `project_state.yaml.example`
+- Lean scope check command: `/lean-check`
+
+### Using Lite in a Game Project
+
+To use this framework for a specific game, copy the template into that game's repository, then copy `project_state.yaml.example` to `project_state.yaml` in the game project and set the active mode:
+
+```yaml
+project:
+  mode: jam
+```
+
+Use `jam` when the next milestone is a playable demo or submission. Use `indie` when the project needs longer-term production structure.
+
+Keep `project_state.yaml.example` as the framework template. Do not use it to track a specific game's live state.
+
+### Lean Check
+
+Run `/lean-check` when a plan, document, feature, template, or agent list starts to feel heavier than the current milestone needs. It checks scope, agents, skills, templates, technical complexity, player value, and delivery risk. It only outputs recommendations; it does not modify files.
 
 ## Studio Hierarchy
 
@@ -175,6 +213,8 @@ versions, and which files are safe to overwrite vs. which need a manual merge.
 CLAUDE.md                           # Master configuration
 .claude/
   settings.json                     # Hooks, permissions, safety rules
+  commands/
+    lean-check.md                   # Lite anti-overengineering check command
   agents/                           # 49 agent definitions (markdown + YAML frontmatter)
   skills/                           # 73 slash commands (subdirectory per skill)
   hooks/                            # 12 hook scripts (bash, cross-platform)
